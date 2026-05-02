@@ -37,8 +37,4 @@ Ambrosia is a responsive website designed for a restaurant. It showcases the res
 ## Usage
 - After starting the server, open your browser and navigate to `http://localhost:3000` to view the website.
 
-## Contributing
-Contributions are welcome! Please submit a pull request or open an issue for any suggestions or enhancements.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
