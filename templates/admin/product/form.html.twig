@@ -1,0 +1,27 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <p><a href="{{ path('admin_products') }}">← Retour aux produits</a></p>
+    <h1 class="page-title">{{ title }}</h1>
+
+    <div class="form-card" style="max-width:760px">
+        {{ form_start(form) }}
+            <div class="form-group">{{ form_label(form.name) }}{{ form_widget(form.name) }}{{ form_errors(form.name) }}</div>
+            <div class="form-group">{{ form_label(form.description) }}{{ form_widget(form.description) }}</div>
+            <div class="form-group">{{ form_label(form.basePrice) }}{{ form_widget(form.basePrice) }}{{ form_errors(form.basePrice) }}</div>
+            <div class="form-group">{{ form_label(form.image) }}{{ form_widget(form.image) }}<small style="color:var(--text-muted)">Emoji ou URL d'image</small></div>
+            <div class="form-group">{{ form_label(form.category) }}{{ form_widget(form.category) }}</div>
+            <div class="form-group">
+                <label style="font-weight:600;color:var(--green-dark);margin-bottom:.5rem;display:block">Options disponibles</label>
+                <div style="display:flex;flex-wrap:wrap;gap:.5rem">
+                    {{ form_widget(form.options) }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

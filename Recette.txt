@@ -1,0 +1,97 @@
+✔️ Le "Lagon Vert" (Veggie & Équilibrée)
+L'option fraîcheur par excellence.
+
+Base : Jeunes pousses d'épinards et quinoa.
+
+Ingrédients : Avocat en tranches, fèves edamame, concombre, rubans de courgettes.
+
+Sauce : Vinaigrette citron-menthe et éclat de graines de courge.
+
+Argument tactile : Idéale pour tester l'option "Ajouter du fromage frais" ou "Retirer le concombre".
+
+
+
+✔️ La "César Moderne" (Protéinée & Classique)
+Une version revisitée du grand classique.
+
+Base : Laitue romaine croquante.
+
+Ingrédients : Émincé de poulet grillé aux herbes, copeaux de parmesan AOC, gros croûtons à l'ail, œufs pochés.
+
+Sauce : Sauce César légère au yaourt et ciboulette.
+
+Argument tactile : Parfaite pour la gestion des "Suppléments" (ex: double dose de poulet ou ajout de bacon grillé).
+
+✔️La "Soleil d'Orient" (Sucrée-Salée)
+Pour ceux qui aiment les saveurs épicées et fruitées.
+
+Base : Boulgour et roquette.
+
+Ingrédients : Pois chiches rôtis, grenades fraîches, feta émiettée, carottes râpées, quelques feuilles de coriandre.
+
+Sauce : Huile d'olive, jus d'orange et une pointe de cumin.
+
+Argument tactile : Une salade colorée qui rendra très bien sur une interface blanche et bois.
+
+✔️La "Récolte d'Automne" (Gourmande & Tiède)
+Une option plus riche et réconfortante.
+
+Base : Mélange de mesclun.
+
+Ingrédients : Dés de patate douce rôtie, noix de pécan grillées, pommes granny smith acidulées, oignons rouges marinés.
+
+Sauce : Vinaigrette au sirop d'érable et moutarde à l'ancienne.
+
+Argument tactile : Permet de simuler des ingrédients "préparés" ou "cuits" au sein d'un menu froid.
+
+✔️La "Terre & Mer" (Saveurs Iodées & Terroir)
+Une combinaison sophistiquée jouant sur le contraste des textures et des saveurs salines.
+
+Base : Mix de roquette poivrée et mâche douce.
+
+Protéines Principales : Crevettes roses marinées à l'ail et au persil, dés de bacon croustillant fumé.
+
+Légumes & Toppings : Tomates séchées au soleil, cœur d'artichaut émincé, billes de mozzarella di bufala.
+
+Sauce : Vinaigrette citron-aneth et éclat de baies roses.
+
+Conseil UX (Personnalisation) : Parfaite pour tester la fonctionnalité "Retirer le bacon" pour une option 100% pesco-végétarienne.
+
+✔️ La "Forêt Noire" (Authentique & Robuste)
+Une salade réconfortante et rassasiante aux accents de terroir.
+
+Base : Boulgour de blé ancien et jeunes pousses d'épinards.
+
+Protéines Principales : Magret de canard fumé tranché finement, œufs durs de caille.
+
+Légumes & Toppings : Dés de potimarron rôtis, éclats de noix de Grenoble, oignons frits croustillants, ciboulette fraîche.
+
+Sauce : Huile de noix et vinaigre balsamique réduit.
+
+Conseil UX (Personnalisation) : Idéale pour simuler la gestion des allergens (Noix) ou les "Suppléments" (double canard).
+
+✔️ La "Nordique Croquante" (Fraîcheur & Fumée)
+Un classique revisité, misant sur le caractère iodé du poisson.
+
+Base : Quinoa tricolore et concombres râpés.
+
+Protéines Principales : Lanières de saumon fumé de qualité (type Ecosse), fromage frais aux herbes.
+
+Légumes & Toppings : Avocat en dés, aneth fraîche, câpres, graines de lin dorées.
+
+Sauce : Sauce au yaourt grec, jus de citron vert et une pointe de wasabi (optionnelle).
+
+Conseil UX (Personnalisation) : Un excellent test pour les boutons de modification de sauce (+/- forte).
+
+✔️ La "Méditerranée Épicée" (Veggie & Relevée)
+Une explosion de saveurs végétales et épicées, sans sucres ajoutés.
+
+Base : Lentilles vertes du Puy et semoule aux épices (type couscous).
+
+Protéines Principales : Pois chiches frits au paprika fumé (pimentón), feta AOC émiettée.
+
+Légumes & Toppings : Poivrons grillés marinés, olives noires Kalamata, câpres, persil plat émincé.
+
+Sauce : Huile d'olive extra vierge et jus de citron jaune pressé, pincée de piment d'Espelette.
+
+Conseil UX (Personnalisation) : Parfaite pour l'option "Ajouter du piment" ou "Retirer la feta" pour une version vegan.

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="page-title">🛒 Mon Panier</h1>
+
+    {% if cart.cartItems|length == 0 %}
+        <div style="text-align:center;padding:3rem">
+            <div style="font-size:4rem">🥗</div>
+            <p style="color:var(--text-muted);margin:1rem 0 2rem">Votre panier est vide.</p>
+            <a href="{{ path('app_menu') }}" class="btn btn-primary">Voir la carte</a>
+        </div>
+    {% else %}
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Options</th>
+                    <th>Prix unitaire</th>
+                    <th>Quantité</th>
+                    <th>Sous-total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart.cartItems %}
+                    <tr>
+                        <td>
+                            <strong>{{ item.product.image }} {{ item.product.name }}</strong>
+                        </td>
+                        <td style="font-size:.85rem;color:var(--text-muted)">
+                            {% if item.selectedOptions|length > 0 %}
+                                {% for opt in item.selectedOptions %}
+                                    <span>{{ opt.name }}</span>{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                —
+                            {% endif %}
+                        </td>
+                        <td>{{ item.unitPrice|number_format(2, ',', ' ') }} €</td>
+                        <td>
+                            <form action="{{ path('app_cart_update', {cartItemId: item.id}) }}" method="post" style="display:inline">
+                                <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="20" class="qty-input"
+                                       onchange="this.form.submit()">
+                            </form>
+                        </td>
+                        <td><strong>{{ item.subtotal|number_format(2, ',', ' ') }} €</strong></td>
+                        <td>
+                            <form action="{{ path('app_cart_remove', {cartItemId: item.id}) }}" method="post" style="display:inline">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Supprimer cet article ?')">✕</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="cart-total">Total : {{ cart.total|number_format(2, ',', ' ') }} €</div>
+
+        <div style="display:flex;gap:1rem;justify-content:flex-end;margin-top:1.5rem;flex-wrap:wrap">
+            <form action="{{ path('app_cart_clear') }}" method="post">
+                <button type="submit" class="btn btn-outline" onclick="return confirm('Vider tout le panier ?')">🗑 Vider le panier</button>
+            </form>
+            <form action="{{ path('app_order_validate') }}" method="post">
+                <button type="submit" class="btn btn-primary btn-lg">✅ Valider ma commande</button>
+            </form>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

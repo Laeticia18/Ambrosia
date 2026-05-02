@@ -1,0 +1,42 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Options{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+        <h1 class="page-title" style="margin:0">Options / Ingrédients</h1>
+        <a href="{{ path('admin_option_new') }}" class="btn btn-primary">+ Nouvelle option</a>
+    </div>
+
+    <table class="admin-table">
+        <thead>
+            <tr><th>ID</th><th>Nom</th><th>Prix extra</th><th>Payante</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            {% for option in options %}
+                <tr>
+                    <td>{{ option.id }}</td>
+                    <td><strong>{{ option.name }}</strong></td>
+                    <td>{{ option.extraPrice|number_format(2, ',', ' ') }} €</td>
+                    <td>
+                        {% if option.isPaid %}
+                            <span class="badge badge-success">Oui</span>
+                        {% else %}
+                            <span class="badge badge-pending">Non</span>
+                        {% endif %}
+                    </td>
+                    <td style="display:flex;gap:.5rem">
+                        <a href="{{ path('admin_option_edit', {id: option.id}) }}" class="btn btn-outline btn-sm">✏️</a>
+                        <form action="{{ path('admin_option_delete', {id: option.id}) }}" method="post">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Supprimer ?')">🗑</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:2rem">Aucune option.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

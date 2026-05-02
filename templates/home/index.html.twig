@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ambrosia — Salades fraîches{% endblock %}
+
+{% block body %}
+<section class="hero">
+    <h1 class="hero__title">🥗 Ambrosia</h1>
+    <p class="hero__subtitle">Salades fraîches, healthy &amp; personnalisées.<br>Composez la salade parfaite, à votre façon.</p>
+    <a href="{{ path('app_menu') }}" class="hero__cta">🍃 Voir la carte</a>
+</section>
+
+<div class="container">
+    <h2 class="section-title">Pourquoi Ambrosia ?</h2>
+    <div class="cards-grid" style="margin-top:1rem">
+        <div class="card">
+            <div class="card__emoji">🌿</div>
+            <div class="card__body">
+                <div class="card__title">Ingrédients frais</div>
+                <div class="card__desc">Tous nos ingrédients sont sourcés localement et préparés chaque matin.</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card__emoji">🎨</div>
+            <div class="card__body">
+                <div class="card__title">Personnalisation totale</div>
+                <div class="card__desc">Choisissez vos toppings, protéines et dressings pour créer votre salade idéale.</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card__emoji">⚡</div>
+            <div class="card__body">
+                <div class="card__title">Service rapide</div>
+                <div class="card__desc">Commandez depuis la borne et récupérez votre salade en quelques minutes.</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align:center; margin:3rem 0">
+        <a href="{{ path('app_menu') }}" class="btn btn-primary btn-lg">🛒 Commander maintenant</a>
+    </div>
+</div>
+{% endblock %}
+

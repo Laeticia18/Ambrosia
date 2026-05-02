@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <p><a href="{{ path('app_menu') }}">← Retour à la carte</a></p>
+
+    <div class="product-detail" style="margin-top:1.5rem">
+        <div class="product-detail__emoji">{{ product.image ?: '🥗' }}</div>
+
+        <div>
+            <h1 class="page-title" style="margin-bottom:.3rem">{{ product.name }}</h1>
+
+            <div class="product-detail__price">
+                <span id="total-price">{{ product.basePrice|number_format(2, ',', ' ') }}</span> €
+                <span id="options-extra-label" style="display:none;font-size:1rem;font-weight:400;color:var(--text-muted);margin-left:.5rem">
+                    (base {{ product.basePrice|number_format(2, ',', ' ') }} € + options)
+                </span>
+            </div>
+
+            <p class="product-detail__desc">{{ product.description }}</p>
+
+            <form action="{{ path('app_cart_add') }}" method="post" id="product-form">
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+
+                {% if product.options|length > 0 %}
+                    {# ── Bouton toggle ── #}
+                    <button type="button" class="btn btn-secondary" id="toggle-options">
+                        ✏️ Personnaliser ma salade
+                    </button>
+
+                    {# ── Panel options (caché par défaut) ── #}
+                    <div id="options-panel" class="options-panel" aria-hidden="true">
+                        <h2 class="section-title" style="margin-top:1.5rem">Choisissez vos options</h2>
+                        <ul class="options-list">
+                            {% for option in product.options %}
+                                <li>
+                                    <label class="option-item">
+                                        <input type="checkbox"
+                                               name="options[]"
+                                               value="{{ option.id }}"
+                                               data-price="{{ option.extraPrice }}"
+                                               class="option-checkbox">
+                                        <span class="option-item__name">{{ option.name }}</span>
+                                        {% if option.isPaid %}
+                                            <span class="option-paid-badge">+</span>
+                                            <span class="option-item__price">+{{ option.extraPrice|number_format(2, ',', ' ') }} €</span>
+                                        {% else %}
+                                            <span class="option-item__price" style="color:var(--text-muted)">Gratuit</span>
+                                        {% endif %}
+                                    </label>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <button type="submit" class="btn btn-primary btn-lg" style="margin-top:1.5rem">
+                    🛒 Ajouter au panier
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    const base       = {{ product.basePrice }};
+    const checkboxes = document.querySelectorAll('.option-checkbox');
+    const priceEl    = document.getElementById('total-price');
+    const extraLabel = document.getElementById('options-extra-label');
+    const toggleBtn  = document.getElementById('toggle-options');
+    const panel      = document.getElementById('options-panel');
+
+    /* ── Mise à jour du prix ── */
+    function updatePrice() {
+        let extra = 0;
+        checkboxes.forEach(cb => {
+            if (cb.checked) extra += parseFloat(cb.dataset.price);
+            cb.closest('.option-item').classList.toggle('is-checked', cb.checked);
+        });
+        priceEl.textContent = (base + extra).toFixed(2).replace('.', ',');
+        if (extraLabel) extraLabel.style.display = extra > 0 ? 'inline' : 'none';
+    }
+    checkboxes.forEach(cb => cb.addEventListener('change', updatePrice));
+
+    /* ── Toggle affichage options ── */
+    if (toggleBtn && panel) {
+        toggleBtn.addEventListener('click', function () {
+            const open = panel.classList.toggle('is-open');
+            panel.setAttribute('aria-hidden', String(!open));
+            toggleBtn.innerHTML = open
+                ? '✕ Masquer les options'
+                : '✏️ Personnaliser ma salade';
+            toggleBtn.classList.toggle('btn-secondary', !open);
+            toggleBtn.classList.toggle('btn-outline',    open);
+        });
+    }
+}());
+</script>
+{% endblock %}

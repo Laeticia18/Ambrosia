@@ -1,0 +1,43 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Commande {{ order.orderNumber }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <p><a href="{{ path('admin_orders') }}">← Retour aux commandes</a></p>
+    <h1 class="page-title">Commande {{ order.orderNumber }}</h1>
+
+    <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.5rem">
+        <div><strong>Date :</strong> {{ order.createdAt|date('d/m/Y à H:i') }}</div>
+        <div><strong>Statut :</strong> <span class="badge badge-{{ order.status == 'confirmed' ? 'success' : 'pending' }}">{{ order.status }}</span></div>
+        <div><strong>Total :</strong> {{ order.totalPrice|number_format(2, ',', ' ') }} €</div>
+    </div>
+
+    <table class="admin-table">
+        <thead>
+            <tr><th>Produit</th><th>Options</th><th>Qté</th><th>Prix unitaire</th><th>Sous-total</th></tr>
+        </thead>
+        <tbody>
+            {% for item in order.orderItems %}
+                <tr>
+                    <td><strong>{{ item.product.image }} {{ item.product.name }}</strong></td>
+                    <td style="font-size:.85rem;color:var(--text-muted)">
+                        {% if item.selectedOptions|length > 0 %}
+                            {% for opt in item.selectedOptions %}{{ opt.name }}{% if not loop.last %}, {% endif %}{% endfor %}
+                        {% else %}—{% endif %}
+                    </td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.unitPrice|number_format(2, ',', ' ') }} €</td>
+                    <td><strong>{{ item.subtotal|number_format(2, ',', ' ') }} €</strong></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" style="text-align:right;font-weight:800;padding:.9rem 1rem">Total</td>
+                <td style="font-weight:900;font-size:1.1rem;color:var(--green-mid);padding:.9rem 1rem">{{ order.totalPrice|number_format(2, ',', ' ') }} €</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Produits{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+        <h1 class="page-title" style="margin:0">Produits</h1>
+        <a href="{{ path('admin_product_new') }}" class="btn btn-primary">+ Nouveau produit</a>
+    </div>
+
+    <table class="admin-table">
+        <thead>
+            <tr><th>ID</th><th>Produit</th><th>Catégorie</th><th>Prix</th><th>Options</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td><strong>{{ product.image }} {{ product.name }}</strong></td>
+                    <td>{{ product.category.name }}</td>
+                    <td>{{ product.basePrice|number_format(2, ',', ' ') }} €</td>
+                    <td>{{ product.options|length }}</td>
+                    <td style="display:flex;gap:.5rem">
+                        <a href="{{ path('admin_product_edit', {id: product.id}) }}" class="btn btn-outline btn-sm">✏️</a>
+                        <form action="{{ path('admin_product_delete', {id: product.id}) }}" method="post">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Supprimer ?')">🗑</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:2rem">Aucun produit.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

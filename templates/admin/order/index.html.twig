@@ -1,0 +1,32 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="page-title">📦 Commandes</h1>
+
+    <table class="admin-table">
+        <thead>
+            <tr><th>N°</th><th>Date</th><th>Total</th><th>Statut</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td><strong>{{ order.orderNumber }}</strong></td>
+                    <td>{{ order.createdAt|date('d/m/Y H:i') }}</td>
+                    <td><strong>{{ order.totalPrice|number_format(2, ',', ' ') }} €</strong></td>
+                    <td>
+                        <span class="badge badge-{{ order.status == 'confirmed' ? 'success' : 'pending' }}">
+                            {{ order.status }}
+                        </span>
+                    </td>
+                    <td><a href="{{ path('admin_order_show', {id: order.id}) }}" class="btn btn-outline btn-sm">👁 Détail</a></td>
+                </tr>
+            {% else %}
+                <tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:2rem">Aucune commande.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

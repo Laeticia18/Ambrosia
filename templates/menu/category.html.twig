@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <p><a href="{{ path('app_menu') }}">← Retour à la carte</a></p>
+    <h1 class="page-title">{{ category.name }}</h1>
+    {% if category.description %}
+        <p style="color:var(--text-muted);margin-bottom:1.5rem">{{ category.description }}</p>
+    {% endif %}
+
+    <div class="cards-grid">
+        {% for product in category.products %}
+            <div class="card">
+                <div class="card__emoji">{{ product.image ?: '🥗' }}</div>
+                <div class="card__body">
+                    <div class="card__title">{{ product.name }}</div>
+                    <div class="card__desc">{{ product.description }}</div>
+                    <div class="card__price">{{ product.basePrice|number_format(2, ',', ' ') }} €</div>
+                    <a href="{{ path('app_product', {id: product.id}) }}" class="card__btn">Personnaliser →</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

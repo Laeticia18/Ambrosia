@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande confirmée — {{ order.orderNumber }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="confirmation-box">
+        <div class="confirmation-box__icon">🎉</div>
+        <h1 style="font-size:1.6rem;font-weight:800;color:var(--green-dark);margin-top:1rem">Merci pour votre commande !</h1>
+        <div class="confirmation-box__number">{{ order.orderNumber }}</div>
+        <p style="color:var(--text-muted);margin-bottom:1.5rem">
+            Votre commande a été enregistrée. Préparez-vous à déguster ! 🥗
+        </p>
+
+        <table style="width:100%;text-align:left;border-collapse:collapse;margin-bottom:1.5rem">
+            <thead>
+                <tr style="border-bottom:2px solid var(--border)">
+                    <th style="padding:.6rem">Produit</th>
+                    <th style="padding:.6rem">Qté</th>
+                    <th style="padding:.6rem">Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order.orderItems %}
+                    <tr style="border-bottom:1px solid var(--border)">
+                        <td style="padding:.6rem">
+                            {{ item.product.image }} {{ item.product.name }}
+                            {% if item.selectedOptions|length > 0 %}
+                                <br><small style="color:var(--text-muted)">
+                                    {% for opt in item.selectedOptions %}{{ opt.name }}{% if not loop.last %}, {% endif %}{% endfor %}
+                                </small>
+                            {% endif %}
+                        </td>
+                        <td style="padding:.6rem">× {{ item.quantity }}</td>
+                        <td style="padding:.6rem;font-weight:700">{{ item.subtotal|number_format(2, ',', ' ') }} €</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" style="padding:.8rem;font-weight:800;font-size:1.1rem">Total</td>
+                    <td style="padding:.8rem;font-weight:900;font-size:1.2rem;color:var(--green-mid)">{{ order.totalPrice|number_format(2, ',', ' ') }} €</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <a href="{{ path('app_home') }}" class="btn btn-primary">🏠 Retour à l'accueil</a>
+    </div>
+</div>
+{% endblock %}

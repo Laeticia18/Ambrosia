@@ -1,0 +1,32 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="page-title">Tableau de bord</h1>
+    <div class="cards-grid" style="max-width:800px">
+        <div class="card">
+            <div class="card__emoji">📂</div>
+            <div class="card__body">
+                <div class="card__title">{{ categoryCount }} catégories</div>
+                <a href="{{ path('admin_categories') }}" class="card__btn">Gérer</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card__emoji">🥗</div>
+            <div class="card__body">
+                <div class="card__title">{{ productCount }} produits</div>
+                <a href="{{ path('admin_products') }}" class="card__btn">Gérer</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card__emoji">📦</div>
+            <div class="card__body">
+                <div class="card__title">{{ orderCount }} commandes</div>
+                <a href="{{ path('admin_orders') }}" class="card__btn">Voir</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

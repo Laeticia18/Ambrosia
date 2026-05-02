@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Admin{% endblock %} — Ambrosia</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🥗</text></svg>">
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{ path('admin_dashboard') }}" class="navbar__brand">🥗 Ambrosia Admin</a>
+        <div class="navbar__links">
+            <a href="{{ path('admin_categories') }}">Catégories</a>
+            <a href="{{ path('admin_products') }}">Produits</a>
+            <a href="{{ path('admin_options') }}">Options</a>
+            <a href="{{ path('admin_orders') }}">Commandes</a>
+            <a href="{{ path('app_home') }}" style="opacity:.7">← Site</a>
+        </div>
+    </nav>
+
+    <main>
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="container">
+                    <div class="flash flash--{{ type }}">{{ message }}</div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer>
+        &copy; {{ "now"|date("Y") }} Ambrosia — Interface d'administration
+    </footer>
+</body>
+</html>
